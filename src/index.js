@@ -1,3 +1,4 @@
+const path = require('path')
 const getReleases = require('./get-releases')
 const searchFor = require('./search-for')
 const display = require('./display')
@@ -10,7 +11,7 @@ const { DEFAULT_CACHE_FILE } = require('./constants')
 
   const releases = await getReleases({
     useCache: !program.fetch,
-    cacheFile: program.cacheFile || DEFAULT_CACHE_FILE,
+    cacheFile: path.resolve(program.cacheFile || DEFAULT_CACHE_FILE),
     owner: program.owner || process.env.OWNER,
     repo: program.repo || process.env.REPO
   })
