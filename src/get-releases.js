@@ -1,7 +1,9 @@
-const fs = require('mz/fs')
+const fs = require('fs')
+const util = require('util')
 const { writeFileSync } = require('fs')
 const github = require('./get-client')
 const { PER_PAGE } = require('./constants')
+const readFile = util.promisify(fs.readFile)
 
 const fetchReleasesBatch = (page, options) =>
   new Promise((resolve, reject) => {
@@ -19,7 +21,7 @@ const fetchReleasesBatch = (page, options) =>
   })
 
 const readCache = cacheFile =>
-  fs.readFile(cacheFile, 'utf8').then(JSON.parse)
+  readFile(cacheFile, 'utf8').then(JSON.parse)
 
 const writeCache = (cacheFile, data) =>
   writeFileSync(cacheFile, JSON.stringify(data), 'utf8')
