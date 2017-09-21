@@ -1,4 +1,3 @@
-const format = require('date-fns/format')
 const { compare } = require('semver')
 const chalk = require('chalk')
 
@@ -25,7 +24,7 @@ const getLine = (body, term) => {
 const orderByDate = (a, b) => compare(a.tag_name, b.tag_name)
 
 const displayMatch = term => match => {
-  const date = format(match.published_at, 'MMMM Do YYYY')
+  const date = new Date(match.published_at).toUTCString()
   const context = getLine(match.body, term)
 
   console.log(chalk.yellow('Date '), date)
