@@ -9,6 +9,7 @@
     "commander": "^2.11.0",
     "dotenv": "^4.0.0",
     "github": "^11.0.0",
+    "moment": "^2.18.1",
     "semver": "^5.4.1"
   },
   "devDependencies": {

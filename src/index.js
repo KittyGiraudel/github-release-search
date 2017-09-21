@@ -4,7 +4,7 @@ const searchFor = require('./search-releases')
 const display = require('./display-results')
 const authenticate = require('./authenticate')
 const program = require('./program')
-const { DEFAULT_CACHE_FILE } = require('./constants')
+const { DEFAULT_CACHE_FILE, DEFAULT_DATE_FORMAT } = require('./constants')
 
 ;(async () => {
   authenticate()
@@ -17,10 +17,14 @@ const { DEFAULT_CACHE_FILE } = require('./constants')
   })
 
   if (program.search) {
-    display(
-      await searchFor(releases, program.search),
-      program.search
-    )
+    const results = await searchFor(releases, {
+      search: program.search,
+      since: program.since,
+      until: program.until,
+      format: program.format || DEFAULT_DATE_FORMAT
+    })
+
+    display(results, program.search)
   }
 })()
 

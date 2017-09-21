@@ -34,13 +34,22 @@ npm run fetch
 Searching for something:
 
 ```
-npm run search "hello"
+npm run search -- "hello"
+```
+
+To narrow down the results, you can use `--until` and `--since` flags which accept either a [SemVer](http://semver.org/) version or a date (default format `DD/MM/YYYY`, can be passed with `--format`).
+
+```
+npm run search -- "hello" --since 2.1.0
+npm run search -- "hello" --since 23/04/2017
+npm run search -- "hello" --since 04/23/2017 --format MM/DD/YYYY
+npm run search -- "hello" --since 2.1.0 --until 3.0.5
 ```
 
 ## Example
 
 ```
-$ npm run search "graphql"
+$ npm run search -- "graphql"
 > node src/index.js --search "graphql"
 
 Date  September 13th 2017

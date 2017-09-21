@@ -7,6 +7,9 @@ program
 
   // Searching
   .option('-s, --search <search>', 'Search term')
+  .option('--since <date|version>', 'Since date/version')
+  .option('--until <date|version>', 'Until date/version')
+  .option('--format <format>', 'Format to parse --since/--until arguments')
 
   // Project options
   .option('-o, --owner <owner>', 'GitHub user or organisation name')
