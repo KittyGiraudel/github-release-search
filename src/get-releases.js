@@ -3,16 +3,16 @@ const { writeFileSync } = require('fs')
 const github = require('./get-client')
 const { PER_PAGE } = require('./constants')
 
-const getReleasesBatch = (page, options) =>
+const fetchReleasesBatch = (page, options) =>
   new Promise((resolve, reject) => {
-    const githubOptions = {
+    const fetchOptions = {
       owner: options.owner,
       repo: options.repo,
       page: options.page,
       per_page: PER_PAGE
     }
 
-    github.repos.getReleases(githubOptions, (err, res) => {
+    github.repos.getReleases(fetchOptions, (err, res) => {
       if (err) reject(err)
       else resolve(res.data)
     })
@@ -24,21 +24,26 @@ const readCache = cacheFile =>
 const writeCache = (cacheFile, data) =>
   writeFileSync(cacheFile, JSON.stringify(data), 'utf8')
 
+const fetchReleases = async options => {
+  let currentPage = 0
+  let resultsLength = Infinity
+  let releases = []
+
+  while (resultsLength > PER_PAGE) {
+    const results = await fetchReleasesBatch(++currentPage, options)
+    resultsLength = results.length
+    releases = releases.concat(results)
+  }
+
+  return releases
+}
+
 module.exports = async options => {
   if (options.useCache) {
     return readCache(options.cacheFile)
   }
 
-  let currentPage = 0
-  let currentResultsLength = Infinity
-  let results = []
-
-  while (currentResultsLength > PER_PAGE) {
-    const currentResults = await getReleasesBatch(++currentPage, options)
-    currentResultsLength = currentResults.length
-    results = results.concat(currentResults)
-  }
-
+  const results = await fetchReleases(options)
   writeCache(options.cacheFile, results)
 
   return results
