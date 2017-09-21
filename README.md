@@ -36,3 +36,16 @@ To avoid having to pass the owner and repository name everytime, you can put the
 OWNER=HugoGiraudel
 REPO=github-release-search
 ```
+
+## Example
+
+```
+$ npm run search "graphql"
+> node src/index.js --search "graphql"
+
+Date  September 13th 2017
+Tag   3.3.0
+Name  The one with the new bank account
+Url   https://github.com/n26/goldfish/releases/tag/3.3.0
+Line  Add apollo webpack-loader and move all queries to `.graphql` files (#1423)
+```
