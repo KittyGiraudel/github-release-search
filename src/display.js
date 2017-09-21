@@ -20,7 +20,11 @@ const displayMatch = term => match => {
   console.log('')
   console.log(chalk.yellow('Date '), date)
   console.log(chalk.yellow('Tag  '), match.tag_name)
-  console.log(chalk.yellow('Name '), match.name)
+
+  if (match.name !== match.tag_name) {
+    console.log(chalk.yellow('Name '), match.name)
+  }
+
   console.log(chalk.yellow('Url  '), match.html_url)
   console.log(chalk.yellow('Line '), context)
 }
