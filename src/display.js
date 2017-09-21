@@ -5,10 +5,21 @@ const chalk = require('chalk')
 const regExpEscape = s => s.replace(/[-\\^$*+?.()|[\]{}]/g, '\\$&')
 
 const getLine = (body, term) => {
-  const re = new RegExp('^.*?\\b(' + regExpEscape(term) + ')\\b.*$', 'im')
+  const re = new RegExp('^.*?(' + regExpEscape(term) + ').*$', 'im')
   const match = body.match(re)
 
-  return match ? match[0].slice(2) : '—'
+  // In case the search term cannot be safely retreived for any reason
+  if (!match) {
+    return '—'
+  }
+
+  return match[0]
+    // Remove bullet
+    .slice(2)
+    // Highlight search term (while preserving case)
+    .replace(new RegExp('(' + term + ')', 'i'), (replace, termi) => {
+      return chalk.bold.blue(termi)
+    })
 }
 
 const orderByDate = (a, b) => compare(a.tag_name, b.tag_name)
