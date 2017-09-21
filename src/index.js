@@ -1,17 +1,9 @@
-const program = require('commander')
 const getReleases = require('./get-releases')
 const searchFor = require('./search-for')
 const display = require('./display')
 const authenticate = require('./authenticate')
+const program = require('./program')
 const { DEFAULT_CACHE_FILE } = require('./constants')
-
-program
-  .option('-s, --search <search>', 'Search term')
-  .option('-s, --owner <owner>', 'GitHub user or organisation name')
-  .option('-s, --repo <repo>', 'GitHub repository name')
-  .option('-s, --cacheFile <repo>', 'Path to cache file')
-  .option('-b, --fetch', 'Fetch releases from GitHub')
-  .parse(process.argv)
 
 ;(async () => {
   authenticate()
