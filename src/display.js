@@ -1,18 +1,19 @@
 const { compare } = require('semver')
 const chalk = require('chalk')
-const searchRegex = require('./search-regex')
+const regex = require('./regex')
+const BULLET_REGEX = /^[\+\*\-]\s+/
 
 const processLine = term => line =>
   line
     // Remove bullet
-    .replace(/^[\+\*\-]\s+/, '')
+    .replace(BULLET_REGEX, '')
     // Highlight search term (while preserving case)
-    .replace(new RegExp('(' + term + ')', 'i'), (replace, termi) => {
-      return chalk.bold.blue(termi)
+    .replace(regex.match(term), (replace, match) => {
+      return chalk.bold.blue(match)
     })
 
 const getLine = (body, term) => {
-  const re = searchRegex(term)
+  const re = regex.search(term)
   const lines = []
   let match
 

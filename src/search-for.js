@@ -1,7 +1,7 @@
-const searchRegex = require('./search-regex')
+const regex = require('./regex')
 
 module.exports = (releases, term) => {
   return releases
     .filter(release => !release.draft)
-    .filter(release => searchRegex(term).test(release.body))
+    .filter(release => regex.search(term).test(release.body))
 }
