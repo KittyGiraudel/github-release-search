@@ -1,7 +1,7 @@
 const fs = require('fs')
 const util = require('util')
 const { writeFileSync } = require('fs')
-const github = require('./get-client')
+const github = require('./get-github-client')
 const { PER_PAGE } = require('./constants')
 const readFile = util.promisify(fs.readFile)
 

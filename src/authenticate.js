@@ -1,4 +1,4 @@
-const github = require('./get-client')
+const github = require('./get-github-client')
 
 require('dotenv').config()
 
