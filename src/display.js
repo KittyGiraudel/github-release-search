@@ -1,7 +1,6 @@
 const { compare } = require('semver')
 const chalk = require('chalk')
-
-const regExpEscape = s => s.replace(/[-\\^$*+?.()|[\]{}]/g, '\\$&')
+const searchRegex = require('./search-regex')
 
 const processLine = term => line =>
   line
@@ -13,7 +12,7 @@ const processLine = term => line =>
     })
 
 const getLine = (body, term) => {
-  const re = new RegExp('^.*?(' + regExpEscape(term) + ').*$', 'img')
+  const re = searchRegex(term)
   const lines = []
   let match
 

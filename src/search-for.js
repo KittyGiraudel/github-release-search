@@ -1,5 +1,7 @@
+const searchRegex = require('./search-regex')
+
 module.exports = (releases, term) => {
   return releases
     .filter(release => !release.draft)
-    .filter(release => release.body.indexOf(term.trim()) > -1)
+    .filter(release => searchRegex(term).test(release.body))
 }
