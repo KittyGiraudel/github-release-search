@@ -16,8 +16,10 @@ const { DEFAULT_CACHE_FILE } = require('./constants')
   })
 
   if (program.search) {
-    const results = await searchFor(releases)(program.search)
-    display(results, program.search)
+    display(
+      await searchFor(releases, program.search),
+      program.search
+    )
   }
 })()
 
