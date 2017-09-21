@@ -14,7 +14,7 @@ const getLine = (body, term) => {
 
   return match[0]
     // Remove bullet
-    .slice(2)
+    .replace(/^[\+\*\-]\s+/, '')
     // Highlight search term (while preserving case)
     .replace(new RegExp('(' + term + ')', 'i'), (replace, termi) => {
       return chalk.bold.blue(termi)
