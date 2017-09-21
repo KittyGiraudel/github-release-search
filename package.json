@@ -1,0 +1,17 @@
+{
+  "scripts": {
+    "search": "node src/index.js --search",
+    "fetch": "node src/index --fetch",
+    "lint": "standard src/*"
+  },
+  "dependencies": {
+    "chalk": "^2.1.0",
+    "commander": "^2.11.0",
+    "date-fns": "^1.28.5",
+    "dotenv": "^4.0.0",
+    "github": "^11.0.0",
+    "mz": "^2.7.0",
+    "semver": "^5.4.1",
+    "standard": "^10.0.3"
+  }
+}
