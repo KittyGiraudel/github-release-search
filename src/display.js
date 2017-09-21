@@ -2,35 +2,33 @@ const { compare } = require('semver')
 const chalk = require('chalk')
 const regex = require('./regex')
 const BULLET_REGEX = /^[\+\*\-]\s+/
+const INDENT = '\n      '
 
-const processLine = term => line =>
+const processLine = matchRegex => line =>
   line
     // Remove bullet
     .replace(BULLET_REGEX, '')
     // Highlight search term (while preserving case)
-    .replace(regex.match(term), (replace, match) => {
-      return chalk.bold.blue(match)
-    })
+    .replace(matchRegex, (_, match) => chalk.bold.blue(match))
 
-const getLine = (body, term) => {
-  const re = regex.search(term)
+const getLines = (body, term) => {
+  const searchRegex = regex.search(term)
+  const matchRegex = regex.match(term)
   const lines = []
   let match
 
-  while ((match = re.exec(body)) !== null) {
+  while ((match = searchRegex.exec(body)) !== null) {
     lines.push(match[0])
   }
 
-  return lines
-    .map(processLine(term))
-    .join('\n      ')
+  return lines.map(processLine(matchRegex)).join(INDENT)
 }
 
-const orderByDate = (a, b) => compare(a.tag_name, b.tag_name)
+const orderByVersion = (a, b) => compare(a.tag_name, b.tag_name)
 
 const displayMatch = term => match => {
   const date = new Date(match.published_at).toUTCString()
-  const context = getLine(match.body, term)
+  const lines = getLines(match.body, term)
 
   console.log(chalk.yellow('Date '), date)
   console.log(chalk.yellow('Tag  '), match.tag_name)
@@ -40,13 +38,12 @@ const displayMatch = term => match => {
   }
 
   console.log(chalk.yellow('Url  '), match.html_url)
-  console.log(chalk.yellow('Lines'), context)
+  console.log(chalk.yellow('Lines'), lines)
   console.log('')
 }
 
 module.exports = (matches, term) => {
   matches
-    .slice(0)
-    .sort(orderByDate)
+    .sort(orderByVersion)
     .forEach(displayMatch(term))
 }
