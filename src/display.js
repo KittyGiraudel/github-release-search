@@ -6,9 +6,9 @@ const regExpEscape = s => s.replace(/[-\\^$*+?.()|[\]{}]/g, '\\$&')
 
 const getLine = (body, term) => {
   const re = new RegExp('^.*?\\b(' + regExpEscape(term) + ')\\b.*$', 'im')
-  const match = body.match(re)[0]
+  const match = body.match(re)
 
-  return match.slice(2)
+  return match ? match[0].slice(2) : '—'
 }
 
 const orderByDate = (a, b) => compare(a.tag_name, b.tag_name)
