@@ -28,7 +28,6 @@ const displayMatch = term => match => {
   const date = format(match.published_at, 'MMMM Do YYYY')
   const context = getLine(match.body, term)
 
-  console.log('')
   console.log(chalk.yellow('Date '), date)
   console.log(chalk.yellow('Tag  '), match.tag_name)
 
@@ -38,6 +37,7 @@ const displayMatch = term => match => {
 
   console.log(chalk.yellow('Url  '), match.html_url)
   console.log(chalk.yellow('Line '), context)
+  console.log('')
 }
 
 module.exports = (matches, term) => {
