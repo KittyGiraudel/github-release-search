@@ -1,7 +1,7 @@
 const { compare } = require('semver')
 const chalk = require('chalk')
 const regex = require('./regex')
-const BULLET_REGEX = /^[\+\*\-]\s+/
+const BULLET_REGEX = /^\s*[\+\*\-]\s+/
 const INDENT = '\n      '
 
 const processLine = matchRegex => line =>
