@@ -3,7 +3,7 @@ const program = require('commander')
 program
   // Fetching and caching
   .option('-f, --fetch', 'Fetch releases from GitHub')
-  .option('-c, --cacheFile <repo>', 'Path to cache file')
+  .option('-c, --cacheFile [path]', 'Path to cache file')
 
   // Searching
   .option('-s, --search <search>', 'Search term')
