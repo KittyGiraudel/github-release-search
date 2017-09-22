@@ -42,12 +42,12 @@ npm run search -- "hello" --repo owner/repo --since 2.1.0 --until 3.0.5
 ## Example
 
 ```
-$ npm run search -- "graphql" --repo n26/goldfish
-> node src/commands/program.js search "graphql" --repo n26/goldfish
+$ npm run search -- "lodash" --repo facebookincubator/create-react-app
 
-Date  September 13th 2017
-Tag   3.3.0
-Name  The one with the new bank account
-Url   https://github.com/n26/goldfish/releases/tag/3.3.0
-Line  Add apollo webpack-loader and move all queries to `.graphql` files (#1423)
+> node src/commands/program.js search "lodash" "--repo" "facebookincubator/create-react-app"
+
+Date  Mon, 28 Aug 2017 02:27:45 GMT
+Tag   v1.0.12
+Url   https://github.com/facebookincubator/create-react-app/releases/tag/v1.0.12
+Lines   * [#2938](https://github.com/facebookincubator/create-react-app/pull/2938) Remove superfluous lodash usage. ([@Timer](https://github.com/Timer))
 ```
