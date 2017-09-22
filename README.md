@@ -49,5 +49,5 @@ $ npm run search -- "lodash" --repo facebookincubator/create-react-app
 Date  Mon, 28 Aug 2017 02:27:45 GMT
 Tag   v1.0.12
 Url   https://github.com/facebookincubator/create-react-app/releases/tag/v1.0.12
-Lines   * [#2938](https://github.com/facebookincubator/create-react-app/pull/2938) Remove superfluous lodash usage. ([@Timer](https://github.com/Timer))
+Lines [#2938](https://github.com/facebookincubator/create-react-app/pull/2938) Remove superfluous lodash usage. ([@Timer](https://github.com/Timer))
 ```
