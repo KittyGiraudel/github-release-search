@@ -43,7 +43,7 @@ npm run search -- "hello" --repo owner/repo --since 2.1.0 --until 3.0.5
 
 ```
 $ npm run search -- "graphql" --repo n26/goldfish
-> node src/index.js --search "graphql"
+> node src/commands/program-search.js "graphql" --repo n26/goldfish
 
 Date  September 13th 2017
 Tag   3.3.0

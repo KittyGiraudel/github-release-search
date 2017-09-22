@@ -1,8 +1,8 @@
 {
   "scripts": {
-    "search": "node src/index.js --search",
-    "fetch": "node src/index --fetch",
-    "lint": "standard src/*"
+    "search": "node src/commands/program.js search",
+    "fetch": "node src/commands/program.js fetch",
+    "lint": "standard src/**/*.js"
   },
   "dependencies": {
     "chalk": "^2.1.0",

@@ -5,6 +5,12 @@ const github = require('./get-github-client')
 const { PER_PAGE } = require('./constants')
 const readFile = util.promisify(fs.readFile)
 
+const readCache = cacheFile =>
+  readFile(cacheFile, 'utf8').then(JSON.parse)
+
+const writeCache = (cacheFile, data) =>
+  writeFileSync(cacheFile, JSON.stringify(data), 'utf8')
+
 const fetchReleasesBatch = (page, options) =>
   new Promise((resolve, reject) => {
     const fetchOptions = {
@@ -20,12 +26,6 @@ const fetchReleasesBatch = (page, options) =>
     })
   })
 
-const readCache = cacheFile =>
-  readFile(cacheFile, 'utf8').then(JSON.parse)
-
-const writeCache = (cacheFile, data) =>
-  writeFileSync(cacheFile, JSON.stringify(data), 'utf8')
-
 const fetchReleases = async options => {
   let currentPage = 0
   let resultsLength = Infinity
@@ -40,13 +40,11 @@ const fetchReleases = async options => {
   return releases
 }
 
-module.exports = async options => {
-  if (options.useCache) {
-    return readCache(options.cacheFile)
+module.exports = {
+  getReleases: cacheFile => readCache(cacheFile),
+  fetchReleases: async options => {
+    const releases = await fetchReleases(options)
+    writeCache(options.cacheFile, releases)
+    return releases
   }
-
-  const results = await fetchReleases(options)
-  writeCache(options.cacheFile, results)
-
-  return results
 }
