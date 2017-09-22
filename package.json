@@ -1,8 +1,13 @@
 {
+  "name": "github-release-search",
+  "version": "0.1.0",
+  "description": "Small command line utility aiming at searching through release notes for a certain search term",
+  "main": "src/commands/program.js",
+  "bin": "src/commands/program.js",
   "scripts": {
     "search": "node src/commands/program.js search",
     "fetch": "node src/commands/program.js fetch",
-    "lint": "standard src/**/*.js"
+    "test": "standard"
   },
   "dependencies": {
     "chalk": "^2.1.0",
@@ -14,5 +19,20 @@
   },
   "devDependencies": {
     "standard": "^10.0.3"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/HugoGiraudel/github-release-search.git"
+  },
+  "keywords": [
+    "github",
+    "releases",
+    "search"
+  ],
+  "author": "Hugo Giraudel",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/HugoGiraudel/github-release-search/issues"
+  },
+  "homepage": "https://github.com/HugoGiraudel/github-release-search#readme"
 }
