@@ -25,7 +25,7 @@ OWNER=HugoGiraudel
 REPO=github-release-search
 ```
 
-Fetching releases and caching them (path can be specific with `--cacheFile`) to speed things up and avoid API limitations:
+Fetching releases and caching them (path can be specific with `--cacheDir`) to speed things up and avoid API limitations:
 
 ```
 npm run fetch

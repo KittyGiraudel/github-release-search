@@ -4,16 +4,26 @@ const searchFor = require('./search-releases')
 const display = require('./display-results')
 const authenticate = require('./authenticate')
 const program = require('./program')
-const { DEFAULT_CACHE_FILE, DEFAULT_DATE_FORMAT } = require('./constants')
+const { DEFAULT_CACHE_DIR, DEFAULT_DATE_FORMAT } = require('./constants')
+
+const getCacheFile = (cacheDir, owner, repo) => {
+  const dir = cacheDir || DEFAULT_CACHE_DIR
+  const key = owner + '.' + repo
+
+  return path.resolve(path.join(dir, key))
+}
 
 ;(async () => {
   authenticate()
+  const owner = program.owner || process.env.OWNER
+  const repo = program.repo || process.env.REPO
 
+  // Split given owner/repo string into individual components for the API
   const releases = await getReleases({
     useCache: !program.fetch,
-    cacheFile: path.resolve(program.cacheFile || DEFAULT_CACHE_FILE),
-    owner: program.owner || process.env.OWNER,
-    repo: program.repo || process.env.REPO
+    cacheFile: getCacheFile(program.cacheDir, owner, repo),
+    owner: owner,
+    repo: repo
   })
 
   if (program.search) {
