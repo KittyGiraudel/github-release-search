@@ -10,7 +10,7 @@ const fetchReleasesBatch = (page, options) =>
     const fetchOptions = {
       owner: options.owner,
       repo: options.repo,
-      page: options.page,
+      page: page,
       per_page: PER_PAGE
     }
 
