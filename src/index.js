@@ -6,22 +6,21 @@ const authenticate = require('./authenticate')
 const program = require('./program')
 const { DEFAULT_CACHE_DIR, DEFAULT_DATE_FORMAT } = require('./constants')
 
-const getCacheFile = (cacheDir, owner, repo) => {
-  const dir = cacheDir || DEFAULT_CACHE_DIR
-  const key = owner + '.' + repo
+const getCacheFile = (options) => {
+  const dir = options.cacheDir || DEFAULT_CACHE_DIR
+  const key = options.repo.split('/').join('.')
 
   return path.resolve(path.join(dir, key))
 }
 
 ;(async () => {
   authenticate()
-  const owner = program.owner || process.env.OWNER
-  const repo = program.repo || process.env.REPO
 
   // Split given owner/repo string into individual components for the API
+  const [ owner, repo ] = program.repo.split('/')
   const releases = await getReleases({
     useCache: !program.fetch,
-    cacheFile: getCacheFile(program.cacheDir, owner, repo),
+    cacheFile: getCacheFile(program),
     owner: owner,
     repo: repo
   })

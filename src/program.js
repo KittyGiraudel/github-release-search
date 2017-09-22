@@ -12,8 +12,7 @@ program
   .option('--format <format>', 'Format to parse --since/--until arguments')
 
   // Project options
-  .option('-o, --owner <owner>', 'GitHub user or organisation name')
-  .option('-r, --repo <repo>', 'GitHub repository name')
+  .option('-r, --repo <repo>', 'GitHub <owner/repository>')
 
   .parse(process.argv)
 

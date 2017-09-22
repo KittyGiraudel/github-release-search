@@ -18,38 +18,31 @@ OAUTH_TOKEN=your_token_here
 
 ## Usage
 
-To avoid having to pass the owner and repository name every time, you can put them in your `.env` file:
-
-```sh
-OWNER=HugoGiraudel
-REPO=github-release-search
-```
-
 Fetching releases and caching them (path can be specific with `--cacheDir`) to speed things up and avoid API limitations:
 
 ```
-npm run fetch
+npm run fetch -- --repo owner/repo
 ```
 
 Searching for something:
 
 ```
-npm run search -- "hello"
+npm run search -- "hello" --repo owner/repo
 ```
 
 To narrow down the results, you can use `--until` and `--since` flags which accept either a [SemVer](http://semver.org/) version or a date (default format `DD/MM/YYYY`, can be passed with `--format`).
 
 ```
-npm run search -- "hello" --since 2.1.0
-npm run search -- "hello" --since 23/04/2017
-npm run search -- "hello" --since 04/23/2017 --format MM/DD/YYYY
-npm run search -- "hello" --since 2.1.0 --until 3.0.5
+npm run search -- "hello" --repo owner/repo --since 2.1.0
+npm run search -- "hello" --repo owner/repo --since 23/04/2017
+npm run search -- "hello" --repo owner/repo --since 04/23/2017 --format MM/DD/YYYY
+npm run search -- "hello" --repo owner/repo --since 2.1.0 --until 3.0.5
 ```
 
 ## Example
 
 ```
-$ npm run search -- "graphql"
+$ npm run search -- "graphql" --repo n26/goldfish
 > node src/index.js --search "graphql"
 
 Date  September 13th 2017
