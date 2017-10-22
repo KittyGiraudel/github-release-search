@@ -1,15 +1,17 @@
 const fs = require('fs')
 const util = require('util')
-const { writeFileSync } = require('fs')
+const path = require('path')
 const github = require('./get-github-client')
 const { PER_PAGE } = require('./constants')
 const readFile = util.promisify(fs.readFile)
+const mkdirp = util.promisify(require('mkdirp'))
 
 const readCache = cacheFile =>
   readFile(cacheFile, 'utf8').then(JSON.parse)
 
 const writeCache = (cacheFile, data) =>
-  writeFileSync(cacheFile, JSON.stringify(data), 'utf8')
+  mkdirp(path.dirname(cacheFile))
+  .then(() => fs.writeFileSync(cacheFile, JSON.stringify(data), 'utf8'))
 
 const fetchReleasesBatch = (page, options) =>
   new Promise((resolve, reject) => {
