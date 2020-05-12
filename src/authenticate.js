@@ -1,8 +1,9 @@
-const github = require('./get-github-client')
+const github = require("./get-github-client");
 
-require('dotenv').config()
+require("dotenv").config();
 
-module.exports = () => github.authenticate({
-  type: 'oauth',
-  token: process.env.OAUTH_TOKEN
-})
+module.exports = () =>
+  github.authenticate({
+    type: "oauth",
+    token: process.env.OAUTH_TOKEN || process.env.GITHUB_TOKEN,
+  });
