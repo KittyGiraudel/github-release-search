@@ -1,8 +1,7 @@
 const fs = require('fs')
 const util = require('util')
 const path = require('path')
-const github = require('./get-github-client')
-const { PER_PAGE } = require('./constants')
+const { PER_PAGE, GITHUB_CLIENT } = require('./constants')
 const readFile = util.promisify(fs.readFile)
 const mkdirp = util.promisify(require('mkdirp'))
 
@@ -22,7 +21,7 @@ const fetchReleasesBatch = (page, options) =>
       per_page: PER_PAGE
     }
 
-    github.repos.getReleases(fetchOptions, (err, res) => {
+    GITHUB_CLIENT.repos.listReleases(fetchOptions, (err, res) => {
       if (err) reject(err)
       else resolve(res.data)
     })

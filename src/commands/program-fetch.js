@@ -1,6 +1,5 @@
 const program = require('commander')
 const { fetchReleases } = require('../get-releases')
-const authenticate = require('../authenticate')
 const parseOptions = require('../parse-options')
 
 program
@@ -11,7 +10,6 @@ program
   try {
     const { cacheFile, owner, repo } = parseOptions(program)
 
-    authenticate()
     await fetchReleases({ cacheFile, owner, repo })
   } catch (err) {
     console.error(err)
