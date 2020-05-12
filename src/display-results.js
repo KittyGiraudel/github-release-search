@@ -1,7 +1,7 @@
 const { compare } = require('semver')
 const chalk = require('chalk')
 const regex = require('./regex')
-const BULLET_REGEX = /^\s*[\+\*\-]\s+/
+const BULLET_REGEX = /^\s*[+*-]\s+/
 const INDENT = '\n      '
 
 const processLine = matchRegex => line =>
@@ -43,7 +43,5 @@ const displayMatch = term => match => {
 }
 
 module.exports = (matches, term) => {
-  matches
-    .sort(orderByVersion)
-    .forEach(displayMatch(term))
+  matches.sort(orderByVersion).forEach(displayMatch(term))
 }

@@ -6,12 +6,12 @@ const { PER_PAGE } = require('./constants')
 const readFile = util.promisify(fs.readFile)
 const mkdirp = util.promisify(require('mkdirp'))
 
-const readCache = cacheFile =>
-  readFile(cacheFile, 'utf8').then(JSON.parse)
+const readCache = cacheFile => readFile(cacheFile, 'utf8').then(JSON.parse)
 
 const writeCache = (cacheFile, data) =>
-  mkdirp(path.dirname(cacheFile))
-  .then(() => fs.writeFileSync(cacheFile, JSON.stringify(data), 'utf8'))
+  mkdirp(path.dirname(cacheFile)).then(() =>
+    fs.writeFileSync(cacheFile, JSON.stringify(data), 'utf8')
+  )
 
 const fetchReleasesBatch = (page, options) =>
   new Promise((resolve, reject) => {
@@ -33,7 +33,7 @@ const fetchReleases = async options => {
   let resultsLength = Infinity
   let releases = []
 
-  while (resultsLength > PER_PAGE) {
+  while (resultsLength >= PER_PAGE) {
     const results = await fetchReleasesBatch(++currentPage, options)
     resultsLength = results.length
     releases = releases.concat(results)

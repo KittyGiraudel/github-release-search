@@ -10,7 +10,6 @@ program
   .option('--format <format>', 'Format to parse --since/--until arguments')
   .option('-r, --repo <repo>', 'GitHub <owner/repository>')
   .parse(process.argv)
-
 ;(async () => {
   try {
     const options = parseOptions(program)

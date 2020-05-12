@@ -10,16 +10,16 @@
     "test": "standard"
   },
   "dependencies": {
-    "chalk": "^2.1.0",
-    "commander": "^2.11.0",
-    "dotenv": "^4.0.0",
+    "chalk": "^4.0.0",
+    "commander": "^5.1.0",
+    "dotenv": "^8.2.0",
     "github": "^11.0.0",
-    "mkdirp": "^0.5.1",
-    "moment": "^2.18.1",
-    "semver": "^5.4.1"
+    "mkdirp": "^1.0.4",
+    "moment": "^2.25.3",
+    "semver": "^7.3.2"
   },
   "devDependencies": {
-    "standard": "^10.0.3"
+    "standard": "^14.3.4"
   },
   "repository": {
     "type": "git",

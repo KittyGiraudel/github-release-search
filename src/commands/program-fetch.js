@@ -7,7 +7,6 @@ program
   .option('-c, --cacheDir [dir]', 'Path to cache directory')
   .option('-r, --repo <repo>', 'GitHub <owner/repository>')
   .parse(process.argv)
-
 ;(async () => {
   try {
     const { cacheFile, owner, repo } = parseOptions(program)
