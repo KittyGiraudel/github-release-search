@@ -24,7 +24,13 @@ const getLines = (body, term) => {
   return lines.map(processLine(matchRegex)).join(INDENT)
 }
 
-const orderByVersion = (a, b) => compare(a.tag_name, b.tag_name)
+const orderByVersion = (a, b) => {
+  try {
+    return compare(a.tag_name, b.tag_name)
+  } catch (error) {
+    return 0
+  }
+}
 
 const displayMatch = term => match => {
   const date = new Date(match.published_at).toUTCString()
