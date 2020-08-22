@@ -3,7 +3,7 @@ const util = require('util')
 const path = require('path')
 const { PER_PAGE, GITHUB_CLIENT } = require('./constants')
 const readFile = util.promisify(fs.readFile)
-const mkdirp = util.promisify(require('mkdirp'))
+const mkdirp = require('mkdirp')
 
 const readCache = cacheFile => readFile(cacheFile, 'utf8').then(JSON.parse)
 
@@ -12,28 +12,17 @@ const writeCache = (cacheFile, data) =>
     fs.writeFileSync(cacheFile, JSON.stringify(data), 'utf8')
   )
 
-const fetchReleasesBatch = (page, options) =>
-  new Promise((resolve, reject) => {
-    const fetchOptions = {
-      owner: options.owner,
-      repo: options.repo,
-      page: page,
-      per_page: PER_PAGE
-    }
-
-    GITHUB_CLIENT.repos.listReleases(fetchOptions, (err, res) => {
-      if (err) reject(err)
-      else resolve(res.data)
-    })
-  })
-
 const fetchReleases = async options => {
   let currentPage = 0
   let resultsLength = Infinity
   let releases = []
 
   while (resultsLength >= PER_PAGE) {
-    const results = await fetchReleasesBatch(++currentPage, options)
+    const { data: results } = await GITHUB_CLIENT.repos.listReleases({
+      ...options,
+      page: ++currentPage,
+      per_page: PER_PAGE
+    })
     resultsLength = results.length
     releases = releases.concat(results)
   }
