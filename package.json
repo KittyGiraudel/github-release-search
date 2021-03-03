@@ -23,17 +23,17 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/HugoGiraudel/github-release-search.git"
+    "url": "git+https://github.com/KittyGiraudel/github-release-search.git"
   },
   "keywords": [
     "github",
     "releases",
     "search"
   ],
-  "author": "Hugo Giraudel",
+  "author": "Kitty Giraudel",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/HugoGiraudel/github-release-search/issues"
+    "url": "https://github.com/KittyGiraudel/github-release-search/issues"
   },
-  "homepage": "https://github.com/HugoGiraudel/github-release-search#readme"
+  "homepage": "https://github.com/KittyGiraudel/github-release-search#readme"
 }
