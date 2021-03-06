@@ -5,7 +5,7 @@ This small command line utility aims at searching through release notes for a ce
 ## Install
 
 ```sh
-git clone git@github.com:HugoGiraudel/github-release-search
+git clone git@github.com:KittyGiraudel/github-release-search
 cd github-release-search
 npm install
 ```
