@@ -10,7 +10,7 @@
     "test": "standard"
   },
   "dependencies": {
-    "@octokit/rest": "^17.9.0",
+    "@octokit/rest": "^21.0.2",
     "chalk": "^4.0.0",
     "commander": "^5.1.0",
     "dotenv": "^8.2.0",
@@ -19,7 +19,7 @@
     "semver": "^7.3.2"
   },
   "devDependencies": {
-    "standard": "^14.3.4"
+    "standard": "^17.1.2"
   },
   "repository": {
     "type": "git",
