@@ -10,7 +10,7 @@
     "test": "standard"
   },
   "dependencies": {
-    "@octokit/rest": "^21.0.2",
+    "@octokit/rest": "^21.1.1",
     "chalk": "^4.0.0",
     "commander": "^5.1.0",
     "dotenv": "^8.2.0",
